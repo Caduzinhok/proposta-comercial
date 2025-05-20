@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUSH - Desenvolvimento de E-commerce</title>
+    <style>
+        :root {
+            --primary-blue: #0099ff;
+            --dark-blue: #003366;
+            --light-blue: #66ccff;
+            --white: #ffffff;
+            --light-gray: #f5f7fa;
+            --dark-gray: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+            color: var(--white);
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .logo-container {
+            max-width: 200px;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .logo-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 999px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0, 51, 102, 0.8), rgba(0, 51, 102, 0.9)), url('https://placehold.co/1200x400/0099ff/003366');
+            background-size: cover;
+            background-position: center;
+            padding: 3rem 0;
+            text-align: center;
+            color: var(--white);
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 1rem 2rem;
+            margin-top: 2rem;
+            border-radius: 50px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 153, 255, 0.4);
+        }
+        
+        .cta-button:hover {
+            background-color: var(--dark-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 153, 255, 0.5);
+        }
+        
+        section {
+            padding: 4rem 0;
+        }
+        
+        section h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--dark-blue);
+            font-size: 2rem;
+        }
+        
+        .etapas {
+            background-color: var(--white);
+        }
+        
+        .etapa-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-left: 5px solid var(--primary-blue);
+            transition: transform 0.3s ease;
+        }
+        
+        .etapa-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .etapa-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .etapa-card h3 .number {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-size: 16px;
+        }
+        
+        .details {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+            gap: 1rem;
+        }
+        
+        .detail-item {
+            background-color: var(--light-gray);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .detail-item strong {
+            margin-right: 5px;
+            color: var(--dark-blue);
+        }
+        
+        .features {
+            background: linear-gradient(135deg, #f5f7fa, #e4ebf5);
+        }
+        
+        .features-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            background: linear-gradient(135deg, var(--primary-blue), var(--light-blue));
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: var(--white);
+            font-size: 1.5rem;
+        }
+        
+        .feature-card h3 {
+            color: var(--dark-blue);
+            margin-bottom: 0.5rem;
+        }
+        
+        .pricing {
+            background-color: var(--white);
+        }
+        
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .pricing-table th {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 1rem;
+            text-align: left;
+        }
+        
+        .pricing-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .pricing-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .pricing-table tr:nth-child(even) {
+            background-color: var(--light-gray);
+        }
+        
+        .price {
+            font-weight: bold;
+            color: var(--primary-blue);
+        }
+        
+        .total-row {
+            background-color: var(--dark-blue) !important;
+            color: var(--white);
+        }
+        
+        .total-row td {
+            font-weight: bold;
+        }
+        
+        .payment-terms {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+        
+        .payment-terms h3 {
+            margin-bottom: 1rem;
+        }
+        
+        .payment-terms ul {
+            list-style-type: none;
+        }
+        
+        .payment-terms li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .payment-terms li:before {
+            content: "•";
+            color: var(--dark-blue);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .contact {
+            background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+            color: var(--white);
+            text-align: center;
+        }
+        .contact h2{
+            color: var(--light-gray);
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact a{
+            text-decoration: none; /* Remove o sublinhado dos links */
+            color: var(--white); /* Define a cor do texto */
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--dark-gray);
+            text-align: left;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .submit-btn {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .submit-btn:hover {
+            background-color: var(--dark-blue);
+        }
+        
+        footer {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            max-width: 120px;
+            margin: 0 auto 1rem;
+        }
+        
+        .footer-logo img {
+            width: 100%;
+            height: auto;
+            border-radius: 999px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            section {
+                padding: 2rem 0;
+            }
+            
+            .features-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <img src="logo.png" alt="PUSH Logo">
+            </div>
+            <h1>PUSH E-commerce Solutions</h1>
+            <p>Transforme sua ideia em uma loja online de sucesso</p>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h1>Sua Loja Virtual Completa em 10 Semanas</h1>
+            <p>Projeto personalizado, responsivo e totalmente funcional com WordPress + WooCommerce. Do design ao lançamento, cuidamos de tudo para você começar a vender online.</p>
+            <a href="#contato" class="cta-button">Solicitar Proposta</a>
+        </div>
+    </section>
+    
+    <section class="etapas" id="etapas">
+        <div class="container">
+            <h2>Processo de Desenvolvimento</h2>
+            
+            <div class="etapa-card">
+                <h3><span class="number">1</span> Design no Figma</h3>
+                <p>Criamos a identidade visual do seu e-commerce com protótipos navegáveis para desktop e mobile, garantindo a melhor experiência para seus clientes.</p>
+                <ul>
+                    <li>Reunião de briefing (identidade visual, estrutura, público-alvo)</li>
+                    <li>Protótipos desktop + mobile de Home, Categoria, Produto, Carrinho, Checkout, Sobre/Contato</li>
+                    <li>Link navegável no Figma para feedback iterativo</li>
+                </ul>
+                <div class="details">
+                    <div class="detail-item">
+                        <strong>Prazo:</strong> até 3 semanas
+                    </div>
+                    <div class="detail-item">
+                        <strong>Entregável:</strong> Protótipo completo, pronto para aprovação
+                    </div>
+                    <div class="detail-item">
+                        <strong>Valor:</strong> R$ 950,00
+                    </div>
+                </div>
+            </div>
+            
+            <div class="etapa-card">
+                <h3><span class="number">2</span> Desenvolvimento do site + Cadastro de produtos</h3>
+                <p>Transformamos o design aprovado em um site funcional com seu catálogo completo de produtos, otimizado para buscadores.</p>
+                <ul>
+                    <li>Instalação WordPress + WooCommerce</li>
+                    <li>Implementação fiel ao layout aprovado (tema filho/Elementor ↔ Gutenberg, conforme preferir)</li>
+                    <li>Otimização responsiva</li>
+                    <li>Cadastro de até 30 produtos com imagens, preços, variações e categorias</li>
+                    <li>SEO on-page básico (títulos, meta-descriptions, URL amigável)</li>
+                </ul>
+                <div class="details">
+                    <div class="detail-item">
+                        <strong>Prazo:</strong> até 4 semanas
+                    </div>
+                    <div class="detail-item">
+                        <strong>Entregável:</strong> Site em homologação, 100% navegável com catálogo ativo
+                    </div>
+                    <div class="detail-item">
+                        <strong>Valor:</strong> R$ 1.550,00
+                    </div>
+                </div>
+            </div>
+            
+            <div class="etapa-card">
+                <h3><span class="number">3</span> Integração de features de e-commerce</h3>
+                <p>Configuramos todas as funcionalidades essenciais para sua loja operar com segurança e eficiência.</p>
+                <ul>
+                    <li>Configuração de meios de pagamento (PagSeguro, Mercado Pago ou Stripe)</li>
+                    <li>Regras de frete Correios/Melhor Envio + cálculo por CEP</li>
+                    <li>Ajustes de checkout seguro (SSL, políticas LGPD, termos)</li>
+                    <li>Otimizações finais de performance (cache, imagens, banco)</li>
+                    <li>Publicação no domínio, testes E2E e vídeo-treinamento</li>
+                </ul>
+                <div class="details">
+                    <div class="detail-item">
+                        <strong>Prazo:</strong> até 3 semanas
+                    </div>
+                    <div class="detail-item">
+                        <strong>Entregável:</strong> Loja publicada e operando, manual + vídeo de uso (≈20 min)
+                    </div>
+                    <div class="detail-item">
+                        <strong>Valor:</strong> R$ 1.350,00
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="features" id="features">
+        <div class="container">
+            <h2>Recursos Inclusos</h2>
+            <div class="features-container">
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Design Personalizado</h3>
+                    <p>Layout exclusivo para sua marca, responsivo para todos os dispositivos</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛒</div>
+                    <h3>E-commerce Completo</h3>
+                    <p>Carrinho, checkout e gestão de produtos integrados</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💳</div>
+                    <h3>Pagamentos Seguros</h3>
+                    <p>Integração com os principais gateways de pagamento</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚚</div>
+                    <h3>Cálculo de Frete</h3>
+                    <p>Integração com Correios e Melhor Envio</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>100% Responsivo</h3>
+                    <p>Experiência perfeita em desktop, tablets e smartphones</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Segurança e LGPD</h3>
+                    <p>SSL e políticas de privacidade inclusos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2>Investimento</h2>
+            
+            <table class="pricing-table">
+                <thead>
+                    <tr>
+                        <th>Etapa</th>
+                        <th>Descrição</th>
+                        <th>Prazo</th>
+                        <th>Valor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1. Design no Figma</td>
+                        <td>Protótipos completos desktop + mobile</td>
+                        <td>até 3 semanas</td>
+                        <td class="price">R$ 950,00</td>
+                    </tr>
+                    <tr>
+                        <td>2. Desenvolvimento + Cadastro</td>
+                        <td>Site funcional com catálogo de até 30 produtos</td>
+                        <td>até 4 semanas</td>
+                        <td class="price">R$ 1.550,00</td>
+                    </tr>
+                    <tr>
+                        <td>3. Integração E-commerce</td>
+                        <td>Pagamentos, fretes e otimizações finais</td>
+                        <td>até 3 semanas</td>
+                        <td class="price">R$ 1.350,00</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td colspan="3">Valor Total</td>
+                        <td class="price">R$ 3.850,00</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p><strong>Prazo global:</strong> 10 semanas (inclui 1 semana de folga para feedbacks e ajustes entre etapas)</p>
+            <p><small>*Prazos contam a partir da liberação de materiais (logo, textos, imagens). Qualquer revisão fora do escopo básico pode impactar cronograma e custo.</small></p>
+            
+            <div class="payment-terms">
+                <h3> Condições de Pagamento</h3>
+                <ul>
+                    <li><strong>40% (R$ 1.540,00)</strong> na assinatura do contrato</li>
+                    <li><strong>30% (R$ 1.155,00)</strong> ao término da Etapa 2</li>
+                    <li><strong>30% (R$ 1.155,00)</strong> na entrega final da Etapa 3</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <section class="contact" id="contato">
+        <div class="container">
+            <h2>Entre em Contato</h2>
+            <p style="margin-bottom: 2rem;">Solicite um orçamento personalizado ou tire suas dúvidas</p>
+            
+            <!-- <div class="contact-form">
+                <div class="form-group">
+                    <label for="name">Nome</label>
+                    <input type="text" id="name" class="form-control" placeholder="Seu nome">
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" class="form-control" placeholder="seu@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Telefone</label>
+                    <input type="tel" id="phone" class="form-control" placeholder="(00) 00000-0000">
+                </div>
+                <div class="form-group">
+                    <label for="message">Mensagem</label>
+                    <textarea id="message" class="form-control" rows="5" placeholder="Descreva seu projeto ou dúvidas..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Enviar Mensagem</button>
+            </div> -->
+        <button type="submit" class="submit-btn"><a href="https://wa.me/5562994865181?text=Quero%20criar%20uma%20loja%20virtual.">Enviar Mensagem</a></button>
+
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-logo">
+                <img src="logo.png" alt="PUSH Logo">
+            </div>
+            <p>© 2025 PUSH E-commerce Solutions. Todos os direitos reservados.</p>
+            <div style="margin-top: 1rem;">
+                <a href="#" style="color: var(--light-blue); margin: 0 10px;">Termos de Uso</a>
+                <a href="#" style="color: var(--light-blue); margin: 0 10px;">Política de Privacidade</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
