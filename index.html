@@ -239,6 +239,51 @@
             font-weight: bold;
             color: var(--primary-blue);
         }
+
+        @media (max-width: 768px) {
+            .pricing-table {
+                display: block;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .pricing-cards {
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+                margin-top: 2rem;
+            }
+            
+            .pricing-card {
+                background-color: var(--white);
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                padding: 1.5rem;
+                border-top: 4px solid var(--primary-blue);
+            }
+            
+            .pricing-card h3 {
+                color: var(--dark-blue);
+                margin-bottom: 1rem;
+                font-size: 1.2rem;
+            }
+            
+            .pricing-card .price-tag {
+                color: var(--primary-blue);
+                font-size: 1.5rem;
+                font-weight: bold;
+                margin: 1rem 0;
+            }
+            
+            .pricing-card .timeframe {
+                background-color: var(--light-gray);
+                padding: 0.5rem;
+                border-radius: 5px;
+                display: inline-block;
+                margin-bottom: 1rem;
+                font-size: 0.9rem;
+            }
+        }
         
         .total-row {
             background-color: var(--dark-blue) !important;
@@ -503,7 +548,7 @@
         </div>
     </section>
     
-    <section class="pricing" id="pricing">
+        <section class="pricing" id="pricing">
         <div class="container">
             <h2>Investimento</h2>
             
@@ -542,17 +587,57 @@
                 </tbody>
             </table>
             
+            <!-- Cards para visualização mobile -->
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3>1. Design no Figma</h3>
+                    <p>Protótipos completos desktop + mobile</p>
+                    <div class="timeframe">Prazo: até 3 semanas</div>
+                    <div class="price-tag">R$ 950,00</div>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>2. Desenvolvimento + Cadastro</h3>
+                    <p>Site funcional com catálogo de até 30 produtos</p>
+                    <div class="timeframe">Prazo: até 4 semanas</div>
+                    <div class="price-tag">R$ 1.550,00</div>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>3. Integração E-commerce</h3>
+                    <p>Pagamentos, fretes e otimizações finais</p>
+                    <div class="timeframe">Prazo: até 3 semanas</div>
+                    <div class="price-tag">R$ 1.350,00</div>
+                </div>
+                
+                <div class="pricing-card" style="background-color: #e6f5ff; border-top-color: var(--dark-blue);">
+                    <h3>Valor Total</h3>
+                    <div class="price-tag">R$ 3.850,00</div>
+                    <p><strong>Prazo global:</strong> 10 semanas</p>
+                </div>
+            </div>
+            
             <p><strong>Prazo global:</strong> 10 semanas (inclui 1 semana de folga para feedbacks e ajustes entre etapas)</p>
             <p><small>*Prazos contam a partir da liberação de materiais (logo, textos, imagens). Qualquer revisão fora do escopo básico pode impactar cronograma e custo.</small></p>
             
             <div class="payment-terms">
-                <h3> Condições de Pagamento</h3>
+                <h3>Condições de Pagamento</h3>
                 <ul>
                     <li><strong>40% (R$ 1.540,00)</strong> na assinatura do contrato</li>
                     <li><strong>30% (R$ 1.155,00)</strong> ao término da Etapa 2</li>
                     <li><strong>30% (R$ 1.155,00)</strong> na entrega final da Etapa 3</li>
                 </ul>
             </div>
+            
+            <h3 style="margin-top: 2rem;">Plugins Principais (todos gratuitos ou freemium):</h3>
+            <ul>
+                <li>WooCommerce</li>
+                <li>WooCommerce Payments ou plugin do gateway escolhido</li>
+                <li>WooCommerce Correios/Melhor Envio</li>
+                <li>Rank Math SEO</li>
+                <li>LiteSpeed Cache (ou WP Super Cache)</li>
+                <li>Jetpack Backup (free tier) para segurança extra</li>
+            </ul>
         </div>
     </section>
     
